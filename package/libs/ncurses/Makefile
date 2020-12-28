@@ -110,6 +110,7 @@ TERMINFO_FILES := \
 	r/rxvt \
 	r/rxvt-unicode \
 	s/screen \
+	s/screen-256color \
 	v/vt100 \
 	v/vt102 \
 	x/xterm \
