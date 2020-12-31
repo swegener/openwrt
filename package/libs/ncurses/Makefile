@@ -103,6 +103,19 @@ MAKE_FLAGS += \
 	PKG_CONFIG_LIBDIR=/usr/lib/pkgconfig \
 	libs
 
+TERMINFO_FILES := \
+	a/ansi \
+	d/dumb \
+	l/linux \
+	r/rxvt \
+	r/rxvt-unicode \
+	s/screen \
+	v/vt100 \
+	v/vt102 \
+	x/xterm \
+	x/xterm-256color \
+	x/xterm-color
+
 define Build/Install/Default
 	$(MAKE_VARS) \
 	$(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) \
@@ -120,7 +133,7 @@ ifneq ($(HOST_OS),FreeBSD)
 			mv $$$$dir $$$$(echo -ne "\x$$$$dir"); \
 		done \
 	)
-	for file in a/ansi d/dumb l/linux r/rxvt r/rxvt-unicode s/screen v/vt100 v/vt102 x/xterm x/xterm-color x/xterm-256color; do \
+	for file in $$(TERMINFO_FILES); do \
 		$(INSTALL_DIR) $(1)/usr/share/terminfo/`dirname $$$$file`; \
 		$(CP) $(PKG_INSTALL_DIR)/usr/share/terminfo/$$$$file \
 			$(1)/usr/share/terminfo/$$$$file; \
